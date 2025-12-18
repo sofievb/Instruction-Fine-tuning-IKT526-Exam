@@ -1,4 +1,4 @@
-# Fine-tuning Llama-3.2-1B using LoRA adapters on Stanford Alpaca Dataset
+# Instruction Fine-Tuning Llama-3.2-1B with LoRA (IKT526 Final Project)
 This repository contains an implementation for instruction fine-tuning the
 meta-llama/Llama-3.2-1B model using LoRA adapters on the
 yahma/alpaca-cleaned dataset, developed as part of the IKT526 course final project.
@@ -11,12 +11,13 @@ The project uses a custom PyTorch training loop to evaluate the fine-tuned model
 
 ## Model & LoRA Configuration
 
-Base model: meta-llama/Llama-3.2-1B
-Fine-tuning method: LoRA (PEFT)
-LoRA parameters: 
-- r (rank): 16
-- alpha: r * 2
-- target modules: ['q_proj', 'k_proj', 'v_proj','o_proj']
+- Base model: meta-llama/Llama-3.2-1B
+- Fine-tuning method: LoRA (PEFT)
+
+**LoRA parameters**
+- Rank (r): 16
+- Alpha: 2 × r
+- Target modules: q_proj, k_proj, v_proj, o_proj
 
 ## Training Setup
 Epochs: 3
@@ -38,25 +39,28 @@ python inference.py
 python evaluate.py
 
 
-## Repository
-- `train.py`: Training and validating model
-- `evaluate.py`: 
-- `main.py`: Main file for training, evaluation and inference.
-    1. Loading and initializing Llama base model and model with LoRA ranks, initializing scheduler, optimizer
-    2. Running evaluation and inference scripts
-    
-- `inference.py`: Script for inference on base vs. fine-tuned model and sampling strategies comparison
-- `config.py`: Defining training hyperparameters, LoRA parameters, model type
-- `outputs/`: 
-    - `/best_lora_model/`: saved adapter configurations
-    - `/generations/`: results generated in `inference.py` and `config.py`
-- `requirements.txt`:  Python dependencies
+## Repository Structure
+
+- train.py: Training and validation loops (custom PyTorch implementation)
+- evaluate.py: Evaluation on test set (perplexity, token-level F1)
+- inference.py: Inference on base vs fine-tuned model and sampling strategy comparison
+- main.py:
+  - Loads model and LoRA adapters
+  - Initializes optimizer and scheduler
+  - Runs training, evaluation, and inference
+- config.py: Training hyperparameters, LoRA configuration, model settings
+- outputs/:
+  - best_lora_model/: saved LoRA adapter weights
+  - generations/: generated outputs and evaluation results
+- requirements.txt: Python dependencies
+
 ## Evaluation Metrics
 - Perplexity: Measures how well the model predicts a sample. Lower perplexity indicates better performance.
 - Token-level F1 Score: Evaluates the accuracy of the model's generated tokens against the reference tokens, balancing precision and recall.
 
-### Notes
-The LoRA adapter is saved separately and can be loaded on top of the base model.
+## Disclaimer
+This repository is intended for educational and portfolio purposes.
+Large model checkpoints are intentionally excluded from version control.
 
 The project intentionally avoids transformers.Trainer to demonstrate a custom training loop.
 
