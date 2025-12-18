@@ -35,29 +35,29 @@ Best model checkpoint saved based on validation loss
 Training statistics (loss, perplexity, runtime, peak GPU memory) are logged and stored in outputs/training_history.json.
 ## Running the Code
 1. Install dependencies:
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 2. Train the model:
-python main.py
+`python main.py`
 3. Run inference:
-python inference.py
+`python inference.py`
 4. Evaluate on test set:
-python evaluate.py
+`python evaluate.py`
 
 
 ## Repository Structure
 
-- train.py: Training and validation loops (custom PyTorch implementation)
-- evaluate.py: Evaluation on test set (perplexity, token-level F1)
-- inference.py: Inference on base vs fine-tuned model and sampling strategy comparison
-- main.py:
+- `train.py`: Training and validation loops (custom PyTorch implementation)
+- `evaluate.py`: Evaluation on test set (perplexity, token-level F1)
+- `inference.py`: Inference on base vs fine-tuned model and sampling strategy comparison
+- `main.py`:
   - Loads model and LoRA adapters
   - Initializes optimizer and scheduler
   - Runs training, evaluation, and inference
-- config.py: Training hyperparameters, LoRA configuration, model settings
+- `config.py`: Training hyperparameters, LoRA configuration, model settings
 - outputs/:
   - best_lora_model/: saved LoRA adapter weights
   - generations/: generated outputs and evaluation results
-- requirements.txt: Python dependencies
+- `requirements.txt`: Python dependencies
 
 ## Evaluation Metrics
 - Perplexity: Measures how well the model predicts a sample. Lower perplexity indicates better performance.
