@@ -20,14 +20,19 @@ The project uses a custom PyTorch training loop to evaluate the fine-tuned model
 - Target modules: q_proj, k_proj, v_proj, o_proj
 
 ## Training Setup
-Epochs: 3
-Optimizer: AdamW
-Scheduler: Linear with warmup
-Gradient accumulation: enabled
-Mixed precision: Automatic Mixed Precision (AMP) when using CUDA
+**Epochs**: 3
+
+**Optimizer**: AdamW
+
+**Scheduler**: Linear with warmup
+
+**Gradient accumulation**: enabled
+
+**Mixed precision**: Automatic Mixed Precision (AMP) when using CUDA
+
 Best model checkpoint saved based on validation loss
-Training statistics (loss, perplexity, runtime, peak GPU memory) are logged and
-stored in outputs/training_history.json.
+
+Training statistics (loss, perplexity, runtime, peak GPU memory) are logged and stored in outputs/training_history.json.
 ## Running the Code
 1. Install dependencies:
 pip install -r requirements.txt
